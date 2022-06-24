@@ -20,7 +20,7 @@ Web server that echos back the HTTP request sent.  This is especially useful whe
 ![Echo Server](https://github.com/CHernandezNY/pcl-baselab/blob/main/images/echoserver.jpg)
 
 ### Juice Shop
-Juice Shop encompasses vulnerabilities from the entire OWASP Top Ten along with many other security flaws found in real-world applications.  It can be used in testing BIG-IP Advance WAF, NGINX App Protect, security trainings, or awareness demos.
+Juice Shop encompasses vulnerabilities from the entire OWASP Top Ten along with many other security flaws found in real-world applications.  It can be used in testing BIG-IP Advance WAF, NGINX App Protect, security trainings, or awareness demos.  
 ![Juice Shop](https://github.com/CHernandezNY/pcl-baselab/blob/main/images/juiceshop.jpg)
 
 ### Keycloak
