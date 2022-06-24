@@ -16,7 +16,7 @@ This lab contains four (4) instances of NGINX web servers, RED, GREEN, BLUE and 
 ![NGINX RGB](https://github.com/CHernandezNY/pcl-baselab/blob/main/images/nginx-rgb.jpg)
 
 ### Echo Server 
-Web server that echos back the HTTP request sent.  This is especially useful when testing header insertions. request manipulation through BIG-IP iRules, Access Policies or NGINX Proxy rules.
+Web server that echos back the HTTP request sent.  This is especially useful when testing header insertions. request manipulation through BIG-IP iRules, Access Policies or NGINX Proxy rules.  
 ![Echo Server](https://github.com/CHernandezNY/pcl-baselab/blob/main/images/echoserver.jpg)
 
 ### Juice Shop
@@ -24,7 +24,7 @@ Juice Shop encompasses vulnerabilities from the entire OWASP Top Ten along with 
 ![Juice Shop](https://github.com/CHernandezNY/pcl-baselab/blob/main/images/juiceshop.jpg)
 
 ### Keycloak
-Keycloak is an open source software product to allow single sign-on with Identity and Access Management. It can be set up as a OpenID Connect or SAML 2.0 Identity Providers. Great for testing OAuth and SAML configurations with BIG-IP APM.
+Keycloak is an open source software product to allow single sign-on with Identity and Access Management. It can be set up as a OpenID Connect or SAML 2.0 Identity Providers. Great for testing OAuth and SAML configurations with BIG-IP APM.  
 ![Keycloak](https://github.com/CHernandezNY/pcl-baselab/blob/main/images/keycloak.jpg)
 
 ### PiHole 
