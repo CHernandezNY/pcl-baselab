@@ -9,7 +9,7 @@
   template:
     src: "templates/{{ item.template }}"
     dest: "{{ item.dest }}"
-    mode: 0644
+    mode: 0664
   with_items:
     - { template: deployment.j2, dest: "{{ playbook_dir }}/k8s_yamls/storage/deployment.yml" }
 
