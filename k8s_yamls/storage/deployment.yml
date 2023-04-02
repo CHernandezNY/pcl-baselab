@@ -21,7 +21,7 @@ spec:
       serviceAccountName: nfs-client-provisioner
       containers:
         - name: nfs-client-provisioner
-          image: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner:v4.0.1
+          image: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner:v4.0.2
           volumeMounts:
             - name: nfs-client-root
               mountPath: /persistentvolumes
@@ -29,11 +29,11 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/nfs-subdir-external-provisioner
             - name: NFS_SERVER
-              value: {{ nfs_server }}
+              value: "{{ nfs_server }}"
             - name: NFS_PATH
-              value: {{ nfs_path }}
+              value: "{{ nfs_path }}"
       volumes:
         - name: nfs-client-root
           nfs:
-            server: {{ nfs_server }}
-            path: {{ nfs_path }}
+            server: "{{ nfs_server }}"
+            path: "{{ nfs_path }}"
