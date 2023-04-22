@@ -7,7 +7,11 @@ Start provisioning of the cluster using the following command:
 
 ``
 $ ansible-playbook deployments.yml -i inventory/hosts.ini
-``  
+``
+
+## Exposing Applications via Services
+In the k8s_yamls/services folder are some examples for exposing the applications as with Service  type ClusterIP or type LoadBalancer.  The ClusterIP sets up a internal load balancing service that is then exposed using NGINX Ingress Controller (KIC) or F5 Container Ingress Services (CIS). 
+
 ## Applications 
 The deployment sets up a namespace called baselab that contains five (5) applications I find the most useful in my lab.
 
@@ -30,6 +34,3 @@ Keycloak is an open source software product to allow single sign-on with Identit
 ### PiHole 
 General purpose DNS server.  Provides UDP and TCP DNS listeners and HTTP webUI.  
 ![PiHole](https://github.com/CHernandezNY/pcl-baselab/blob/main/images/pihole.jpg)
-
-## Exposing Applications via Services
-In the k8s_yamls/services folder are some example for exposing the applications as with Service  type ClusterIP or type LoadBalancer.  The ClusterIP sets up a internal load balancing service that is then exposed using NGINX Ingress Controller (KIC) or F5 Container Ingress Services (CIS). 
