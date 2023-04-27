@@ -1,0 +1,6 @@
+---
+- name: Create Keycloak LoadBalancer Service
+  k8s:
+    state: present            
+    namespace: baselab  
+    src: "{{ playbook_dir }}/k8s_yamls/services/loadbalancer/keycloak-svc-lb.yml"

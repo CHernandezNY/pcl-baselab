@@ -1,0 +1,14 @@
+---
+- name: Download NGINX Ingress manifest 
+  ansible.builtin.get_url:
+    url: "{{ nginx_url }}"
+    dest: "{{ playbook_dir }}/k8s_yamls/nginx-ingress.yml"
+    mode: 0664
+
+- name: Update NGINX Ingress yaml with loadbalancer IP
+  shell: sed -i -e '/type:\ LoadBalancer/a '"\  loadBalancerIP:\ {{ ingress_ip }}" '{{ playbook_dir }}'/k8s_yamls/nginx-ingress.yml
+
+- name: Install NGINX Ingress
+  k8s:
+    state: present          
+    src: "{{ playbook_dir }}/k8s_yamls/nginx-ingress.yml"

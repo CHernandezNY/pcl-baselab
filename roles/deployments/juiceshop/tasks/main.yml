@@ -3,4 +3,4 @@
   k8s:
     state: present            
     namespace: baselab  
-    src: "{{ playbook_dir }}/k8s_yamls/juiceshop.yml"
+    src: "{{ playbook_dir }}/k8s_yamls/deployments/juiceshop.yml"

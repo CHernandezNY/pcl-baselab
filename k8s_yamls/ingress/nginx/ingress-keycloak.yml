@@ -5,15 +5,13 @@ metadata:
   namespace: baselab
   annotations:
     kubernetes.io/ingress.class: "nginx"    
-    cert-manager.io/issuer: "letsencrypt-production"
 
 spec:
   tls:
   - hosts:
-    - keycloak.lab.fauxshadow.net
-    secretName: lab-fauxshadow-net-prod-tls
+    - keycloak.{{ lab_domain }}
   rules:
-  - host: keycloak.lab.fauxshadow.net
+  - host: keycloak.{{ lab_domain }}
     http:
       paths:
       - path: /

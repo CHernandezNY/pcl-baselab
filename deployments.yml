@@ -1,8 +1,9 @@
 ---
+# deploy applications
 - hosts: localhost
   connection: local
-  #gather_facts: yes
-  #become: yes
+  gather_facts: false
+
   roles:
     - role: storage
     - role: deployments/namespace
@@ -11,3 +12,55 @@
     - role: deployments/echoserver
     - role: deployments/pihole
     - role: deployments/keycloak
+
+# deploy ingress
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  roles:
+    - role: ingress/nginx
+      when: ingress_deploy == "nginx"
+
+# deploy clusterip services
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: deploy clusterip services
+      block:
+        - name: NGINX RGB clusterip
+          include_role: 
+            name: services/clusterip/nginx-rgb
+        - name: Juice Shop clusterip
+          include_role: 
+            name: services/clusterip/juiceshop
+        - name: Echo Server clusterip
+          include_role: 
+            name: services/clusterip/echoserver
+        - name: PiHole clusterip
+          include_role: 
+            name: services/clusterip/pihole
+        - name: Keycloak clusterip
+          include_role: 
+            name: services/clusterip/keycloak   
+      when: service_type == "clusterip"
+
+    - name: deploy loadbalancer services
+      block:
+        - name: NGINX RGB lb
+          include_role: 
+            name: services/loadbalancer/nginx-rgb
+        - name: Juice Shop lb
+          include_role: 
+            name: services/loadbalancer/juiceshop
+        - name: Echo Server lb
+          include_role: 
+            name: services/loadbalancer/echoserver
+        - name: PiHole lb
+          include_role: 
+            name: services/loadbalancer/pihole
+        - name: Keycloak lb
+          include_role: 
+            name: services/loadbalancer/keycloak   
+      when: service_type == "loadbalancer"

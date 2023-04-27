@@ -3,22 +3,22 @@
   k8s:
     state: absent            
     namespace: baselab  
-    src: "{{ playbook_dir }}/k8s_yamls/nginx-rgb.yml"
+    src: "{{ playbook_dir }}/k8s_yamls/deployments/nginx-rgb.yml"
 
 - name: Create NGINX Red deployment
   k8s:
     state: absent           
     namespace: baselab  
-    src: "{{ playbook_dir }}/k8s_yamls/nginx-red.yml"
+    src: "{{ playbook_dir }}/k8s_yamls/deployments/nginx-red.yml"
 
 - name: Create NGINX Green deployment
   k8s:
     state: absent           
     namespace: baselab  
-    src: "{{ playbook_dir }}/k8s_yamls/nginx-green.yml"
+    src: "{{ playbook_dir }}/k8s_yamls/deployments/nginx-green.yml"
 
 - name: Create NGINX Blue deployment
   k8s:
     state: absent           
     namespace: baselab  
-    src: "{{ playbook_dir }}/k8s_yamls/nginx-blue.yml"
+    src: "{{ playbook_dir }}/k8s_yamls/deployments/nginx-blue.yml"

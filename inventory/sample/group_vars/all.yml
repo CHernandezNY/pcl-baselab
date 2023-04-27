@@ -13,3 +13,12 @@ nfs_path: "/srv/nfs/kubedata"
 # Ingress IP
 # Set IP from service loadbalancer range
 ingress_ip: "192.168.1.90"
+
+# Lab domain
+lab_domain: "lab.example.com"
+
+# Select ingress nginx or none
+ingress_deploy: "nginx"
+
+# nginx ingress manifest url
+nginx_url: "https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.0/deploy/static/provider/cloud/deploy.yaml"
