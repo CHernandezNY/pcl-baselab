@@ -12,3 +12,15 @@
   k8s:
     state: present          
     src: "{{ playbook_dir }}/k8s_yamls/nginx-ingress.yml"
+
+- name: "Status of the NGINX Ingress controller"
+  k8s_info:
+    kubeconfig: "~/.kube/config"
+    api_version: v1
+    kind: Deployment
+    name: ingress-nginx-controller
+    namespace: ingress-nginx
+  register: ingress_service
+  until: ingress_service.resources | json_query('[*].status.conditions[?reason==`NewReplicaSetAvailable`][].status') | select ('match','True') | list | length == 1
+  delay: 15
+  retries: 10
