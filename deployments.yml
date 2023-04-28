@@ -13,20 +13,25 @@
     - role: deployments/pihole
     - role: deployments/keycloak
 
-# deploy ingress
-- hosts: localhost
-  connection: local
-  gather_facts: false
-  roles:
-    - role: ingress/nginx
-      when: ingress_deploy == "nginx"
-
-# deploy clusterip services
 - hosts: localhost
   connection: local
   gather_facts: false
 
   tasks:
+
+    - name: deploy NGINX Ingress 
+      block:
+        - name: NGINX Ingress Controller
+          include_role: 
+            name: ingress/nginx
+        - name: Keycloak Ingress
+          include_role: 
+            name: app-ingress/keycloak
+        - name: NGINX RGB Ingress
+          include_role: 
+            name: app-ingress/nginx-rgb
+      when: ingress_deploy == "nginx"
+
     - name: deploy clusterip services
       block:
         - name: NGINX RGB clusterip

@@ -1,0 +1,57 @@
+---
+- name: Create NGINX RGB ingress
+  k8s:
+    state: present           
+    definition:
+      apiVersion: v1
+      kind: Ingress 
+      metadata:
+        name: rgb-nginx
+        namespace: baselab
+        annotations:
+          kubernetes.io/ingress.class: nginx
+      spec:
+        tls:
+        - hosts:
+          - rgb.{{ lab_domain }}
+        rules:
+        - host: rgb.{{ lab_domain }}
+          http:
+            paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: nginx-rgb
+                  port:
+                    number: 80
+        - host: red.{{ lab_domain }}
+          http:
+            paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: nginx-red
+                  port:
+                    number: 80
+        - host: green.{{ lab_domain }}
+          http:
+            paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: nginx-green
+                  port:
+                    number: 80
+        - host: blue.{{ lab_domain }}
+          http:
+            paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: nginx-blue
+                  port:
+                    number: 80
