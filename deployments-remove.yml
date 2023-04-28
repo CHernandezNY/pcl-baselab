@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  roles:
+    - role: deployments-remove/namespace
+    - role: deployments-remove/ingress/nginx
+

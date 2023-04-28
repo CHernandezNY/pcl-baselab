@@ -1,5 +1,5 @@
 ---
-- name: Create Keycloak deployment
+- name: Remove Keycloak deployment
   k8s:
     state: absent            
     namespace: baselab  

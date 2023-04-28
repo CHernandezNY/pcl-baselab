@@ -1,5 +1,5 @@
 ---
-- name: Create PiHole deployment service
+- name: Remove PiHole deployment
   k8s:
     state: absent            
     namespace: baselab  

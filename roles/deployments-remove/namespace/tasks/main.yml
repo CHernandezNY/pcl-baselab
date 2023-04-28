@@ -1,5 +1,5 @@
 ---
-- name: Create a baselab namespace
+- name: Remove a baselab namespace
   k8s:
     name: baselab 
     api_version: v1

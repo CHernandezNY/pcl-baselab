@@ -1,5 +1,5 @@
 ---
-- name: Create OWASP Juice Shop deployment
+- name: Remove OWASP Juice Shop deployment
   k8s:
     state: absent            
     namespace: baselab  

@@ -1,5 +1,5 @@
 ---
-- name: Create Echo Server deployment
+- name: Remove Echo Server deployment
   k8s:
     state: absent            
     namespace: baselab  
