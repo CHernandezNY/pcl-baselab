@@ -10,6 +10,9 @@ system_timezone: "Your/Timezone"
 nfs_server: "192.168.1.10"
 nfs_path: "/srv/nfs/kubedata"
 
+# interface which will be used for CNI interface
+cni_iface: "ens6"
+
 # metallb install flag
 metallb_deploy: true
 

@@ -16,6 +16,13 @@
 - hosts: localhost
   connection: local
   gather_facts: false
+  roles:
+    - role: metallb 
+      when: metallb_deploy == true
+
+- hosts: localhost
+  connection: local
+  gather_facts: false
 
   tasks:
 
