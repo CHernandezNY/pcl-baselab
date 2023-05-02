@@ -1,0 +1,27 @@
+---
+- name: Create Echo ingress
+  k8s:
+    state: present           
+    definition:
+      apiVersion: v1
+      kind: Ingress 
+      metadata:
+        name: echo
+        namespace: baselab
+        annotations:
+          kubernetes.io/ingress.class: nginx
+      spec:
+        tls:
+        - hosts:
+          - "echo.{{ lab_domain }}"
+        rules:
+        - host: "echo.{{ lab_domain }}"
+          http:
+            paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: echoserver
+                  port:
+                    number: 80        

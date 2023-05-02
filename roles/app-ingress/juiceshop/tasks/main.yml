@@ -1,0 +1,27 @@
+---
+- name: Create Juice Shop ingress
+  k8s:
+    state: present           
+    definition:
+      apiVersion: v1
+      kind: Ingress 
+      metadata:
+        name: juiceshop
+        namespace: baselab
+        annotations:
+          kubernetes.io/ingress.class: nginx
+      spec:
+        tls:
+        - hosts:
+          - "juice.{{ lab_domain }}"
+        rules:
+        - host: "juice.{{ lab_domain }}"
+          http:
+            paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: juiceshop
+                  port:
+                    number: 80         

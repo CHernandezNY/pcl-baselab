@@ -29,6 +29,18 @@ spec:
     port: 53
     name: dnstcp
     targetPort: 53
+  type: ClusterIP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-http
+  namespace: baselab
+spec:
+  selector:
+    app: pihole-sts
+    statefulset.kubernetes.io/pod-name: pihole-sts-0
+  ports:
   - protocol: TCP
     port: 80
     name: http

@@ -37,6 +37,15 @@
         - name: NGINX RGB Ingress
           include_role: 
             name: app-ingress/nginx-rgb
+        - name: Echo Ingress
+          include_role: 
+            name: app-ingress/echoserver
+        - name: NGINX Juice Shop Ingress
+          include_role: 
+            name: app-ingress/juiceshop
+        - name: NGINX PiHole Ingress
+          include_role: 
+            name: app-ingress/pihole
       when: ingress_deploy == "nginx"
 
     - name: deploy clusterip services
