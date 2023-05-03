@@ -23,4 +23,4 @@
   register: ingress_service
   until: ingress_service.resources | json_query('[*].status.conditions[?reason==`NewReplicaSetAvailable`][].status') | select ('match','True') | list | length == 1
   delay: 15
-  retries: 10
+  retries: 20
