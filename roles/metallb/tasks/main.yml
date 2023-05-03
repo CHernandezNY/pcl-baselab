@@ -29,7 +29,7 @@
     register: web_service
     until: web_service.resources | json_query('[*].status.conditions[?reason==`NewReplicaSetAvailable`][].status') | select ('match','True') | list | length == 1
     delay: 15
-    retries: 10
+    retries: 15
 
   - name: Copy metallb Config manifest 
     template:
