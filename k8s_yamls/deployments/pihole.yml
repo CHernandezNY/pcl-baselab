@@ -63,10 +63,10 @@ spec:
         volumeMounts:
         - name: pv-data
           mountPath: "/etc/pihole"
-          subPath: "etc/pihole"
+          subPath: "pcl-pihole/etc/pihole"
         - name: pv-data
           mountPath: "/etc/dnsmasq.d"
-          subPath: "etc/dnsmasq.d"
+          subPath: "pcl-pihole/etc/dnsmasq.d"
         - name: var-log
           mountPath: "/var/log"
           subPath: "var/log"
@@ -84,9 +84,9 @@ spec:
   - metadata:
       name: pv-data
     spec:
-      storageClassName: managed-nfs-storage
+      storageClassName: manual
       accessModes:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 500Mi
+          storage: 2Gi

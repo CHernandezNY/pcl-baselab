@@ -13,6 +13,22 @@
   with_items:
     - { template: deployment.j2, dest: "{{ playbook_dir }}/k8s_yamls/storage/deployment.yml" }
 
+- name: Set up the PiHole PV yaml file.
+  template:
+    src: "templates/{{ item.template }}"
+    dest: "{{ item.dest }}"
+    mode: 0664
+  with_items:
+    - { template: pihole-pv.j2, dest: "{{ playbook_dir }}/k8s_yamls/storage/pihole-pv.yml" }
+
+- name: Set up the Keycloak PV yaml file.
+  template:
+    src: "templates/{{ item.template }}"
+    dest: "{{ item.dest }}"
+    mode: 0664
+  with_items:
+    - { template: keycloak-pv.j2, dest: "{{ playbook_dir }}/k8s_yamls/storage/keycloak-pv.yml" }
+
 - name: Create NFS Storage Deployment 
   k8s:
     state: present            
@@ -24,3 +40,13 @@
     state: present            
     namespace: baselab  
     src: "{{ playbook_dir }}/k8s_yamls/storage/class-retain.yml"
+
+- name: Create PiHole PV Storage  
+  k8s:
+    state: present            
+    src: "{{ playbook_dir }}/k8s_yamls/storage/pihole-pv.yml"
+
+- name: Create Keycloak PV Storage  
+  k8s:
+    state: present            
+    src: "{{ playbook_dir }}/k8s_yamls/storage/keycloak-pv.yml"
