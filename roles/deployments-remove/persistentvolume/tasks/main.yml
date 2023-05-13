@@ -1,0 +1,16 @@
+---
+- name: Remove the PiHole PV
+  k8s:
+    name: pv-nfs-keycloak 
+    api_version: v1
+    kind: PersistentVolume
+    state: absent
+
+- name: Remove the Keycloak PV
+  k8s:
+    name: pv-nfs-pihole
+    api_version: v1
+    kind: PersistentVolume
+    state: absent
+    wait: true  
+

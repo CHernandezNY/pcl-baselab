@@ -34,6 +34,21 @@ spec:
     port: 53
     name: dnstcp
     targetPort: 53
+  type: LoadBalancer
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-http
+  namespace: baselab
+  annotations:
+    metallb.universe.tf/allow-shared-ip: dns
+spec:
+  selector:
+    app: pihole-sts
+    statefulset.kubernetes.io/pod-name: pihole-sts-0
+  ports:
   - protocol: TCP
     port: 80
     name: http

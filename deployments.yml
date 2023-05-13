@@ -4,13 +4,6 @@
   connection: local
   gather_facts: false
 
-- hosts: localhost
-  connection: local
-  gather_facts: false
-  roles:
-    - role: metallb 
-      when: metallb_deploy == true
-
   roles:
     - role: storage
     - role: deployments/namespace
@@ -19,6 +12,8 @@
     - role: deployments/echoserver
     - role: deployments/pihole
     - role: deployments/keycloak
+    - role: metallb 
+      when: metallb_deploy == true
 
 - hosts: localhost
   connection: local

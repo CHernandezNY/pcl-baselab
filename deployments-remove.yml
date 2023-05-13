@@ -5,4 +5,5 @@
   roles:
     - role: deployments-remove/namespace
     - role: deployments-remove/ingress/nginx
+    - role: deployments-remove/persistentvolume
 
