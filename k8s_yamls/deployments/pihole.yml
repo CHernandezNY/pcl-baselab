@@ -62,11 +62,11 @@ spec:
           protocol: TCP
         volumeMounts:
         - name: pv-data
-          mountPath: "/etc/pihole"
-          subPath: "pcl-pihole/etc/pihole"
+          mountPath: "/etc/pihole/"
+          subPath: "etc/pihole/"
         - name: pv-data
-          mountPath: "/etc/dnsmasq.d"
-          subPath: "pcl-pihole/etc/dnsmasq.d"
+          mountPath: "/etc/dnsmasq.d/"
+          subPath: "etc/dnsmasq.d/"
         - name: var-log
           mountPath: "/var/log"
           subPath: "var/log"

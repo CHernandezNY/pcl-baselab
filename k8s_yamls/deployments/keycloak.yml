@@ -29,7 +29,7 @@ spec:
           value: "true"
         volumeMounts:
           - mountPath: /opt/jboss/keycloak/standalone/data
-            subPath: pcl-keycloak/opt/jboss/keycloak/standalone/data
+            subPath: opt/jboss/keycloak/standalone/data
             name: keycloakdata  
         ports:
         - name: http
