@@ -63,10 +63,10 @@ spec:
         volumeMounts:
         - name: pv-data
           mountPath: "/etc/pihole/"
-          subPath: "etc/pihole/"
+          subPath: "pihole-etc/pihole/"
         - name: pv-data
           mountPath: "/etc/dnsmasq.d/"
-          subPath: "etc/dnsmasq.d/"
+          subPath: "pihole=etc/dnsmasq.d/"
         - name: var-log
           mountPath: "/var/log"
           subPath: "var/log"
