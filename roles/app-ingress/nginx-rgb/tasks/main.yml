@@ -14,6 +14,7 @@
         tls:
         - hosts:
           - rgb.{{ lab_domain }}
+          secretName: pcl-tls-secret
         rules:
         - host: rgb.{{ lab_domain }}
           http:

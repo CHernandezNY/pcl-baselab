@@ -5,6 +5,7 @@
   gather_facts: false
 
   roles:
+    - role: cert-manager
     - role: storage
     - role: deployments/namespace
     - role: deployments/nginx-rgb
