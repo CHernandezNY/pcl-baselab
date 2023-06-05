@@ -79,6 +79,7 @@
         namespace: baselab
       spec:
         secretName: pcl-tls-secret
+        commonName: www.{{ lab_domain }}
         issuerRef:
           name: pcl-clusterissuer
           kind: ClusterIssuer
@@ -91,4 +92,3 @@
           - green.{{ lab_domain }}
           - blue.{{ lab_domain }}
           - pihole.{{ lab_domain }}
-
