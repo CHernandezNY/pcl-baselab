@@ -25,7 +25,7 @@ ingress_deploy: "nginx"
 # Set IP from service loadbalancer range
 ingress_ip: "192.168.1.90"
 
-# Select the service tpye 'clusterip' or 'loadbalancer'
+# Select the service tpye 'nodeport', 'clusterip' or 'loadbalancer'
 service_type: "clusterip"
 
 # Lab domain

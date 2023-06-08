@@ -81,3 +81,22 @@
           include_role: 
             name: services/loadbalancer/keycloak   
       when: service_type == "loadbalancer"
+
+    - name: deploy nodeport services
+      block:
+        - name: NGINX RGB nodeport
+          include_role: 
+            name: services/nodeport/nginx-rgb
+        - name: Juice Shop nodeport
+          include_role: 
+            name: services/nodeport/juiceshop
+        - name: Echo Server nodeport
+          include_role: 
+            name: services/nodeport/echoserver
+        - name: PiHole nodeport
+          include_role: 
+            name: services/nodeport/pihole
+        - name: Keycloak nodeport
+          include_role: 
+            name: services/nodeport/keycloak   
+      when: service_type == "nodeport"
