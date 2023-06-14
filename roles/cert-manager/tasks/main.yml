@@ -9,6 +9,18 @@
     state: present          
     src: "{{ playbook_dir }}/k8s_yamls/ca/cert-manager.yml"
 
+- name: "Waiting for Cert Manager Webhook"
+  k8s_info:
+    kubeconfig: "~/.kube/config"
+    api_version: v1
+    kind: Deployment
+    name: cert-manager-webhook
+    namespace: cert-manager
+  register: cmw_service
+  until: cmw_service.resources | json_query('[*].status.conditions[?reason==`NewReplicaSetAvailable`][].status') | select ('match','True') | list | length == 1
+  delay: 15
+  retries: 20
+
 - name: Generate The PCL CA private key 
   community.crypto.openssl_privatekey:
     path: "{{ playbook_dir }}/k8s_yamls/ca/crt-key/ca.key"
