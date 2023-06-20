@@ -100,3 +100,22 @@
           include_role: 
             name: services/nodeport/keycloak   
       when: service_type == "nodeport"
+
+    - name: deploy hybrid services
+      block:
+        - name: NGINX RGB hybrid
+          include_role: 
+            name: services/hybrid/nginx-rgb
+        - name: Juice Shop hybrid
+          include_role: 
+            name: services/hybrid/juiceshop
+        - name: Echo Server hybrid
+          include_role: 
+            name: services/hybrid/echoserver
+        - name: PiHole hybrid
+          include_role: 
+            name: services/hybrid/pihole
+        - name: Keycloak hybrid
+          include_role: 
+            name: services/hybrid/keycloak   
+      when: service_type == "hybrid"
