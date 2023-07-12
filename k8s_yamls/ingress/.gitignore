@@ -1,1 +1,3 @@
-*.yml
+! ./cis_app_ingress/*
+
+./*.yml

@@ -1,0 +1,15 @@
+---
+- name: Remove CIS IngressClass
+  k8s:
+    state: absent      
+    src: "{{ playbook_dir }}/k8s_yamls/bigip-cis/ingressclass_cis.yml"
+  ignore_errors: true
+
+- name: Remove ingress-cis namespace
+  k8s:
+    name: ingress-cis
+    api_version: v1
+    kind: Namespace
+    state: absent 
+    wait: true
+    wait_timeout: 300

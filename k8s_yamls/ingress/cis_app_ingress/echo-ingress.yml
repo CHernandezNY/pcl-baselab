@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress 
+metadata:
+  name: echo
+  namespace: baselab
+  annotations:
+    virtual-server.f5.com/partition: "baselab"
+    virtual-server.f5.com/ip: 10.1.10.39
+    virtual-server.f5.com/http-port: "80"
+    virtual-server.f5.com/ssl-redirect: "false"
+    virtual-server.f5.com/balance: "round-robin"
+    virtual-server.f5.com/health: |
+      [
+        {
+          "path":     "echo.pcl.f5pslab.com/",
+          "send":     "GET / HTTP/1.1\r\nHost: echo.pcl.f5pslab.com",
+          "interval": 5,
+          "timeout":  10
+        }
+      ]
+spec:
+  # Provide the IngressClassName as "f5"
+  ingressClassName: f5
+  rules:
+  - host: "echo.pcl.f5pslab.com"
+    http:
+    # path to Service from URL
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: echoserver
+            port:
+              number: 80      

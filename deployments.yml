@@ -29,19 +29,19 @@
             name: ingress/nginx
         - name: Keycloak Ingress
           include_role: 
-            name: app-ingress/keycloak
+            name: nginx-ingress/keycloak
         - name: NGINX RGB Ingress
           include_role: 
-            name: app-ingress/nginx-rgb
+            name: nginx-ingress/nginx-rgb
         - name: Echo Ingress
           include_role: 
-            name: app-ingress/echoserver
+            name: nginx-ingress/echoserver
         - name: NGINX Juice Shop Ingress
           include_role: 
-            name: app-ingress/juiceshop
+            name: nginx-ingress/juiceshop
         - name: NGINX PiHole Ingress
           include_role: 
-            name: app-ingress/pihole
+            name: nginx-ingress/pihole
       when: ingress_deploy == "nginx"
 
     - name: deploy clusterip services

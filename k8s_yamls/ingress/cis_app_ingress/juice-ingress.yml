@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress 
+metadata:
+  name: juiceshop
+  namespace: baselab
+  annotations:
+    virtual-server.f5.com/partition: "baselab"
+    virtual-server.f5.com/ip: 10.1.10.39
+    virtual-server.f5.com/health: |
+      [
+        {
+          "path":     "juice.pcl.f5pslab.com/",
+          "send":     "GET / HTTP/1.1\r\nHost: juice.pcl.f5pslab.com",
+          "recv":     "OWASP",
+          "interval": 5,
+          "timeout":  10
+        }
+      ]
+spec:
+  # Provide the IngressClassName as "f5"
+  ingressClassName: f5
+  tls:
+  - hosts:
+    - "juice.pcl.f5pslab.com"
+    #Referencing this secret in an Ingress tells the Ingress controller to 
+    #secure the channel from the client to the load balancer using TLS
+    secretName: pcl-tls-secret
+  rules:
+  - host: "juice.pcl.f5pslab.com"
+    http:
+    # path to Service from URL
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: juiceshop
+            port:
+              number: 80         

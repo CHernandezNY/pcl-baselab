@@ -3,6 +3,7 @@
   k8s:
     state: absent      
     src: "{{ playbook_dir }}/k8s_yamls/ingress/nginx-ingress.yml"
+  ignore_errors: true
 
 - name: Remove ingress-nginx namespace
   k8s:

@@ -1,0 +1,84 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress 
+metadata:
+  name: rgb-nginx
+  namespace: baselab
+  annotations:
+    virtual-server.f5.com/partition: "baselab"
+    virtual-server.f5.com/ip: 10.1.10.39
+    virtual-server.f5.com/health: |
+      [
+        {
+          "path":     "rgb.pcl.f5pslab.com/",
+          "send":     "GET / HTTP/1.1\r\nHost: rgb.pcl.f5pslab.com",
+          "recv":     "green",
+          "interval": 5,
+          "timeout":  10
+        }, {
+          "path":     "red.pcl.f5pslab.com/",
+          "send":     "GET / HTTP/1.1\r\nHost: red.pcl.f5pslab.com",
+          "recv":     "RED",
+          "interval": 5,
+          "timeout":  5
+        },
+        {
+          "path":     "green.pcl.f5pslab.com/",
+          "send":     "GET / HTTP/1.1\r\nHost: green.pcl.f5pslab.com",
+          "recv":     "GREEN",
+          "interval": 5,
+          "timeout":  10
+        }, 
+        {
+          "path":     "blue.pcl.f5pslab.com/",
+          "send":     "GET / HTTP/1.1\r\nHost: blue.pcl.f5pslab.com",
+          "recv":     "BLUE",
+          "interval": 5,
+          "timeout":  5
+        }
+      ]
+spec:
+  tls:
+  - hosts:
+    - rgb.pcl.f5pslab.com
+    secretName: pcl-tls-secret
+  rules:
+  - host: rgb.pcl.f5pslab.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-rgb
+            port:
+              number: 80
+  - host: red.pcl.f5pslab.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-red
+            port:
+              number: 80
+  - host: green.pcl.f5pslab.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-green
+            port:
+              number: 80
+  - host: blue.pcl.f5pslab.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-blue
+            port:
+              number: 80
