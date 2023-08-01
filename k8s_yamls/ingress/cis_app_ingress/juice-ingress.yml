@@ -9,8 +9,8 @@ metadata:
     virtual-server.f5.com/health: |
       [
         {
-          "path":     "juice.pcl.f5pslab.com/",
-          "send":     "GET / HTTP/1.1\r\nHost: juice.pcl.f5pslab.com",
+          "path":     "juice.example.com/",
+          "send":     "GET / HTTP/1.1\r\nHost: example.com",
           "recv":     "OWASP",
           "interval": 5,
           "timeout":  10
@@ -21,12 +21,12 @@ spec:
   ingressClassName: f5
   tls:
   - hosts:
-    - "juice.pcl.f5pslab.com"
+    - "juice.example.com"
     #Referencing this secret in an Ingress tells the Ingress controller to 
     #secure the channel from the client to the load balancer using TLS
     secretName: pcl-tls-secret
   rules:
-  - host: "juice.pcl.f5pslab.com"
+  - host: "juice.example.com"
     http:
     # path to Service from URL
       paths:

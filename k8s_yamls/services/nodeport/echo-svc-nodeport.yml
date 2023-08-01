@@ -4,6 +4,11 @@ kind: Service
 metadata:
   name: echoserver
   namespace: baselab
+  labels:
+    app: echoserver
+    cis.f5.com/as3-tenant: Baselab-1
+    cis.f5.com/as3-app: Echo1
+    cis.f5.com/as3-pool: echo_pool
 spec:
   selector:
     app: echoserver
