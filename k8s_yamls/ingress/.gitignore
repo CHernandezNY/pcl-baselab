@@ -1,2 +1,2 @@
-./*.yml
+./nginx-ingress.yml
 ! ./cis_app_ingress/*
